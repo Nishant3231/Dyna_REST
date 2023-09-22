@@ -75,8 +75,8 @@ router.post('/:table', async (req, res) => {
         else {
             const data = req.body
             insertRows = `Insert into ${req.params.table} values `
+            insertRows += `(`
             await Promise.all(data.row.map(async row => {
-                insertRows += `(`
                 await Promise.all(Object.keys(row).map(async col => {
                     if (!(await checkCol(req.params.table, col))) {
                         console.log(`${col} doesnt exist`)
@@ -93,17 +93,19 @@ router.post('/:table', async (req, res) => {
                     insertRows += `"${row[col]}",`
                 }))
                 insertRows = insertRows.slice(0, -1)
-                insertRows += `),`
+                insertRows += `),(`
             }))
             console.log('query comp')
-            insertRows = insertRows.slice(0, -1)
+            insertRows = insertRows.slice(0, -2)
             insertRows += ';'
+            console.log(insertRows)
             con.query(insertRows, (err, result) => {
-                if(err) console.log(err)
-                else console.log(result)
-            })
-            res.json({
-                message: 'added'
+                if (err) res.status(500).json({
+                    message: err
+                })
+                else res.status(201).json({
+                    message: 'the rows were added'
+                })
             })
         }
     } catch (err) {
