@@ -95,13 +95,8 @@ DELETE /:table/:id
 
 
 ## Screenshots
-![Ingesting Schema](INGEST_schema.png)
-![Alt text](POST_req.png)
-![Alt text](GET_req.png)
-![Alt text](UPDATE_req.png)
-![Alt text](DELETEquery.png)
-
-
-
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Ingesting Schema](./example/INGEST_schema.png)
+![POST](./example/POST_req.png)
+![GET](./example/GET_req.png)
+![UPDATE](./example/UPDATE_req.png)
+![DELETE](./example/DELETEquery.png)
