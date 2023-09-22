@@ -4,6 +4,8 @@ This project implements a generic database proxy that serves as a REST API for p
 
 The project is written in Node.js and utilizes the Express server framework. The SQL flavor used is MySQL. The proxy ingests schema files in JSON format to build the database schema on every server startup, as the initial schema may not be known in advance.
 
+Furthermore, during the Create(i.e. POST) request, it will look for the availability and then if the column doesn't exist, it will create/add that column in the database and insert the provided values.
+
 
 ### Prerequisites
 - Node.js installed.
@@ -33,7 +35,7 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run start
+  npm start
 ```
 Access the API using the defined endpoints and perform CRUD operations on the database.
 
@@ -95,8 +97,19 @@ DELETE /:table/:id
 
 
 ## Screenshots
+
+### Examples :
+- Ingesting Schema :
 ![Ingesting Schema](./example/INGEST_schema.png)
+
+- POST request :
 ![POST](./example/POST_req.png)
+
+- GET request :
 ![GET](./example/GET_req.png)
+
+- UPDATE request :
 ![UPDATE](./example/UPDATE_req.png)
+
+- DELETE request :
 ![DELETE](./example/DELETEquery.png)
